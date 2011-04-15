@@ -19,14 +19,16 @@ describe("server dispatch rest api", function(){
   });
 
   it("should return 404 when first piece of path isn't a module", function(){
-    testRig.request("GET", "/foo", function(response){
+    testRig.request("GET", "/foo", function(response, message){
       expect(response.statusCode).toEqual(404);
+      expect(message).toEqual("Nope, that's not available.\n");
     });
   });
 
   it("should return 404 when first piece of path is a module, but not in 'dispatch_targets'", function(){
-    testRig.request("GET", "/http", function(response){
+    testRig.request("GET", "/http", function(response, message){
       expect(response.statusCode).toEqual(404);
+      expect(message).toEqual("Nope, that's not available.\n");
     });
   });
 
